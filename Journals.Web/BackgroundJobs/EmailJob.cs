@@ -11,11 +11,6 @@ using Quartz;
 
 namespace Journals.Web.BackgroundJobs {
     public class EmailJob : IJob {
-        private EmailSkeleton _email;
-
-        public EmailJob(EmailSkeleton email) {
-            _email = email;
-        }
 
         public void Execute(IJobExecutionContext context) {
             SendDailyEmails();
@@ -37,7 +32,7 @@ namespace Journals.Web.BackgroundJobs {
                     SendEmail(new EmailSkeleton {
                         User = subscribedUser.UserName,
                         Email = subscribedUser.Email,
-                        Subject = "New issues published!",
+                        Subject = "New issue published!",
                         Body = todayIssue.Title
                     });
                 }

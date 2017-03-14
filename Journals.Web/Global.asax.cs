@@ -4,31 +4,24 @@ using Journals.Repository.DataContext;
 using Journals.Web.IoC;
 using System;
 using System.Data.Entity;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Journals.Web.BackgroundJobs;
-using Quartz;
-using Quartz.Impl;
 using GlobalConfiguration = System.Web.Http.GlobalConfiguration;
 
-namespace Journals.Web
-{
+namespace Journals.Web {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode,
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
-    {
+    public class MvcApplication : System.Web.HttpApplication {
         private static SimpleMembershipInitializer _initializer;
         private static object _initializerLock = new object();
         private static bool _isInitialized;
 
-        protected void Application_Start()
-        {
+        protected void Application_Start() {
             Database.SetInitializer<JournalsContext>(new ModelChangedInitializer());
             AreaRegistration.RegisterAllAreas();
 
@@ -57,33 +50,14 @@ namespace Journals.Web
 
 
             // Daily Emails
-            IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
-            scheduler.Start();
-
-            IJobDetail job = JobBuilder.Create<EmailJob>().Build();
-            ITrigger trigger = TriggerBuilder.Create()
-                .WithDailyTimeIntervalSchedule
-                  (s =>
-                     s.WithIntervalInHours(24)
-                    .OnEveryDay()
-                    .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(0, 0))
-                  )
-                .Build();
-
-            scheduler.ScheduleJob(job, trigger);
-
-            //SendDailyEmails();
+            JobScheduler.Start();
         }
 
-        
-
-        protected void Application_Error(object sender, EventArgs e)
-        {
+        protected void Application_Error(object sender, EventArgs e) {
             // Get the exception object.
             Exception exc = Server.GetLastError();
 
-            if (exc.GetType() == typeof(HttpException))
-            {
+            if (exc.GetType() == typeof(HttpException)) {
                 if (exc.Message.Contains("Maximum request length exceeded."))
                     Response.Redirect(String.Format("~/Error/RequestLengthExceeded"));
             }
