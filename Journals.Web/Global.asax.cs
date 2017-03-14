@@ -46,6 +46,9 @@ namespace Journals.Web
             Mapper.Initialize(cfg => cfg.CreateMap<SubscriptionViewModel, Journal>());
 
             LazyInitializer.EnsureInitialized(ref _initializer, ref _isInitialized, ref _initializerLock);
+
+            // SEED users
+            new DataContext.ModelChangedInitializer().PSeed(new DataContext.JournalsContext());
         }
 
         protected void Application_Error(object sender, EventArgs e)

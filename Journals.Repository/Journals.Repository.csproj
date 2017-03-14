@@ -76,19 +76,26 @@
   <ItemGroup>
     <Compile Include="DataContext\DataInitializer.cs" />
     <Compile Include="DataContext\DropCreateDatabaseAlwaysInitializer.cs" />
+    <Compile Include="DataContext\JournalsContext.cs" />
+    <Compile Include="DataContext\ModelChangedInitializer.cs" />
     <Compile Include="DataContext\SimpleMembershipInitializer.cs" />
+    <Compile Include="DataContext\UserContext.cs" />
     <Compile Include="IDisposedTracker.cs" />
+    <Compile Include="IIssueRepository.cs" />
     <Compile Include="IStaticMembershipService.cs" />
     <Compile Include="ISubscriptionRepository.cs" />
     <Compile Include="IJournalRepository.cs" />
+    <Compile Include="IssueRepository.cs" />
+    <Compile Include="Migrations\201703141802027_Issues.cs" />
+    <Compile Include="Migrations\201703141802027_Issues.Designer.cs">
+      <DependentUpon>201703141802027_Issues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="StaticMembershipService.cs" />
     <Compile Include="SubscriptionRepository.cs" />
     <Compile Include="JournalRepository.cs" />
-    <Compile Include="DataContext\JournalsContext.cs" />
-    <Compile Include="DataContext\ModelChangedInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
-    <Compile Include="DataContext\UserContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -99,6 +106,11 @@
       <Project>{142360ab-7cc4-4e10-99db-a402d1bc60f7}</Project>
       <Name>Journals.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703141802027_Issues.resx">
+      <DependentUpon>201703141802027_Issues.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

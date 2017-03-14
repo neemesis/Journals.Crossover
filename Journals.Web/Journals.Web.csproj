@@ -209,19 +209,25 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IssuesController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Controllers\SubscriberController.cs" />
+    <Compile Include="DataContext\DataInitializer.cs" />
+    <Compile Include="DataContext\DropCreateDatabaseAlwaysInitializer.cs" />
+    <Compile Include="DataContext\JournalsContext.cs" />
+    <Compile Include="DataContext\ModelChangedInitializer.cs" />
+    <Compile Include="DataContext\SimpleMembershipInitializer.cs" />
+    <Compile Include="DataContext\UserContext.cs" />
     <Compile Include="Filters\AuthorizeRedirectAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Filters\ValidateOnlyIncomingValuesAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\JournalHelper.cs" />
+    <Compile Include="Helpers\JiHelper.cs" />
     <Compile Include="IoC\IoCMappingContainer.cs" />
     <Compile Include="IoC\IoCScopeContainer.cs" />
     <Compile Include="IoC\ScopeContainer.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -357,12 +363,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Publisher\Index.cshtml" />
+    <Content Include="Views\Subscriber\Index.cshtml" />
+    <Content Include="Views\Error\RequestLengthExceeded.cshtml" />
     <Content Include="Views\Publisher\Create.cshtml" />
     <Content Include="Views\Publisher\Delete.cshtml" />
     <Content Include="Views\Publisher\Edit.cshtml" />
-    <Content Include="Views\Subscriber\Index.cshtml" />
-    <Content Include="Views\Error\RequestLengthExceeded.cshtml" />
+    <Content Include="Views\Publisher\Index.cshtml" />
+    <Content Include="Views\Issues\Create.cshtml" />
+    <Content Include="Views\Issues\Delete.cshtml" />
+    <Content Include="Views\Issues\Edit.cshtml" />
+    <Content Include="Views\Issues\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

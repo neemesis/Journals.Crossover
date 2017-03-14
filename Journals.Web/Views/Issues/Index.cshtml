@@ -1,4 +1,4 @@
-﻿@model List<Journals.Model.JournalViewModel>
+﻿@model List<Journals.Model.IssueViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -20,7 +20,7 @@
     </style>
 }
 
-<h2>Publisher - List of Journals</h2>
+<h2>Publisher - List of Issues</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -56,9 +56,8 @@ else
                         @Html.ActionLink(item.FileName, "GetFile", new { Id = item.Id }, new { target = "_blank" })
                     </td>
                     <td>
-                        @Html.ActionLink("Add Issue", "Create", "Issues", new { journalId = item.Id }, null)
-                        @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                        @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                     </td>
                 </tr>
             }

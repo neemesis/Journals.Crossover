@@ -17,8 +17,10 @@ namespace Journals.Web.IoC
             _Instance.RegisterType<HomeController>();
             _Instance.RegisterType<PublisherController>();
             _Instance.RegisterType<SubscriberController>();
+            _Instance.RegisterType<IssuesController>();
 
             _Instance.RegisterType<IJournalRepository, JournalRepository>(new HierarchicalLifetimeManager());
+            _Instance.RegisterType<IIssueRepository, IssueRepository>(new HierarchicalLifetimeManager());
             _Instance.RegisterType<ISubscriptionRepository, SubscriptionRepository>(new HierarchicalLifetimeManager());
             _Instance.RegisterType<IStaticMembershipService, StaticMembershipService>(new HierarchicalLifetimeManager());
             return _Instance;

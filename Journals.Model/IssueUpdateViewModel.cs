@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace Journals.Model
 {
-    public class Journal
+    public class IssueUpdateViewModel
     {
         public int Id { get; set; }
 
@@ -21,13 +19,9 @@ namespace Journals.Model
 
         public byte[] Content { get; set; }
 
-        public DateTime ModifiedDate { get; set; }
-
-        [ForeignKey("UserId")]
-        public UserProfile User { get; set; }
+        [ValidateFile]
+        public HttpPostedFileBase File { get; set; }
 
         public int UserId { get; set; }
-
-        public ICollection<Issue> Issues { get; set; }
     }
 }

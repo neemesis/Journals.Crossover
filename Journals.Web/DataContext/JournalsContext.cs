@@ -3,17 +3,17 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Journals.Repository;
 
-namespace Journals.Repository.DataContext {
+namespace Journals.Web.DataContext {
     public class JournalsContext : DbContext, IDisposedTracker {
         public JournalsContext()
             : base("name=JournalsDB") {
         }
-
+        // Entities
         public DbSet<Journal> Journals { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Issue> Issues { get; set; }
-
+        // Entities end
         public bool IsDisposed { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {

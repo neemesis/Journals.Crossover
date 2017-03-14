@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Journals.Model
-{
-    public class Journal
-    {
+namespace Journals.Model {
+    public class Issue {
         public int Id { get; set; }
 
         [Required]
@@ -28,6 +29,8 @@ namespace Journals.Model
 
         public int UserId { get; set; }
 
-        public ICollection<Issue> Issues { get; set; }
+        [ForeignKey("JournalId")]
+        public Journal Journal { get; set; }
+        public int JournalId { get; set; }
     }
 }

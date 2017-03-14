@@ -23,6 +23,7 @@ namespace Journals.Web.Controllers {
             var userId = (int)_membershipService.GetUser().ProviderUserKey;
 
             List<Journal> allJournals = _journalRepository.GetAllJournals(userId);
+            Mapper.Initialize(cfg => cfg.CreateMap<Journal, JournalViewModel>());
             var journals = Mapper.Map<List<Journal>, List<JournalViewModel>>(allJournals);
             return View(journals);
         }
@@ -45,7 +46,7 @@ namespace Journals.Web.Controllers {
             if (ModelState.IsValid) {
                 Mapper.Initialize(cfg => cfg.CreateMap<JournalViewModel, Journal>());
                 var newJournal = Mapper.Map<JournalViewModel, Journal>(journal);
-                JournalHelper.PopulateFile(journal.File, newJournal);
+                JiHelper.PopulateFileJournal(journal.File, newJournal);
 
                 newJournal.UserId = (int)_membershipService.GetUser().ProviderUserKey;
 
@@ -60,6 +61,7 @@ namespace Journals.Web.Controllers {
 
         public ActionResult Delete(int Id) {
             var selectedJournal = _journalRepository.GetJournalById(Id);
+            Mapper.Initialize(cfg => cfg.CreateMap<Journal, JournalViewModel>());
             var journal = Mapper.Map<Journal, JournalViewModel>(selectedJournal);
             return View(journal);
         }
@@ -67,6 +69,7 @@ namespace Journals.Web.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(JournalViewModel journal) {
+            Mapper.Initialize(cfg => cfg.CreateMap<JournalViewModel, Journal>());
             var selectedJournal = Mapper.Map<JournalViewModel, Journal>(journal);
 
             var opStatus = _journalRepository.DeleteJournal(selectedJournal);
@@ -88,8 +91,9 @@ namespace Journals.Web.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Edit(JournalUpdateViewModel journal) {
             if (ModelState.IsValid) {
+                Mapper.Initialize(cfg => cfg.CreateMap<JournalUpdateViewModel, Journal>());
                 var selectedJournal = Mapper.Map<JournalUpdateViewModel, Journal>(journal);
-                JournalHelper.PopulateFile(journal.File, selectedJournal);
+                JiHelper.PopulateFileJournal(journal.File, selectedJournal);
 
                 var opStatus = _journalRepository.UpdateJournal(selectedJournal);
                 if (!opStatus.Status)
