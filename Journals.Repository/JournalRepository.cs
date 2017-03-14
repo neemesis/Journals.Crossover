@@ -80,15 +80,6 @@ namespace Journals.Repository {
                 if (journal.Description != null)
                     j.Description = journal.Description;
 
-                if (journal.Content != null)
-                    j.Content = journal.Content;
-
-                if (journal.ContentType != null)
-                    j.ContentType = journal.ContentType;
-
-                if (journal.FileName != null)
-                    j.FileName = journal.FileName;
-
                 j.ModifiedDate = DateTime.Now;
 
                 DataContext.Entry(j).State = EntityState.Modified;

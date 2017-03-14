@@ -25,10 +25,6 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        <dt class="label">File</dt>
-        <dd>
-            @Html.ActionLink(Model.FileName, "GetFile", new { Id = Model.Id }, new { target = "_blank" })
-        </dd>
     </dl>
 
     @using (Html.BeginForm())

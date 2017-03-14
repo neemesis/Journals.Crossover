@@ -4,12 +4,17 @@ using Journals.Repository.DataContext;
 using Journals.Web.IoC;
 using System;
 using System.Data.Entity;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Journals.Web.BackgroundJobs;
+using Quartz;
+using Quartz.Impl;
+using GlobalConfiguration = System.Web.Http.GlobalConfiguration;
 
 namespace Journals.Web
 {
@@ -49,7 +54,28 @@ namespace Journals.Web
 
             // SEED users
             new DataContext.ModelChangedInitializer().PSeed(new DataContext.JournalsContext());
+
+
+            // Daily Emails
+            IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
+            scheduler.Start();
+
+            IJobDetail job = JobBuilder.Create<EmailJob>().Build();
+            ITrigger trigger = TriggerBuilder.Create()
+                .WithDailyTimeIntervalSchedule
+                  (s =>
+                     s.WithIntervalInHours(24)
+                    .OnEveryDay()
+                    .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(0, 0))
+                  )
+                .Build();
+
+            scheduler.ScheduleJob(job, trigger);
+
+            //SendDailyEmails();
         }
+
+        
 
         protected void Application_Error(object sender, EventArgs e)
         {

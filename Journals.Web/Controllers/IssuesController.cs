@@ -29,8 +29,7 @@ namespace Journals.Web.Controllers {
         }
 
         public ActionResult Index(int? journalId) {
-            var id = journalId ?? 1; 
-            List<Issue> allIssues = _IssueRepository.GetAllIssues(id);
+            var allIssues = _IssueRepository.GetAllIssues(journalId);
             Mapper.Initialize(cfg => cfg.CreateMap<Issue, IssueViewModel>());
             var issues = Mapper.Map<List<Issue>, List<IssueViewModel>>(allIssues);
             return View(issues);
@@ -52,15 +51,13 @@ namespace Journals.Web.Controllers {
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IssueViewModel Issue, int journalId) {
+        public ActionResult Create(IssueViewModel Issue) {
             if (ModelState.IsValid) {
                 Mapper.Initialize(cfg => cfg.CreateMap<IssueViewModel, Issue>());
                 var newIssue = Mapper.Map<IssueViewModel, Issue>(Issue);
                 JiHelper.PopulateFileIssue(Issue.File, newIssue);
 
                 newIssue.UserId = (int)_membershipService.GetUser().ProviderUserKey;
-                // TODO fix
-                newIssue.JournalId = 1;
 
                 var opStatus = _IssueRepository.AddIssue(newIssue);
                 if (!opStatus.Status)
@@ -93,7 +90,7 @@ namespace Journals.Web.Controllers {
 
         public ActionResult Edit(int Id) {
             var Issue = _IssueRepository.GetIssueById(Id);
-
+            Mapper.Initialize(cfg => cfg.CreateMap<Issue, IssueUpdateViewModel>());
             var selectedIssue = Mapper.Map<Issue, IssueUpdateViewModel>(Issue);
 
             return View(selectedIssue);

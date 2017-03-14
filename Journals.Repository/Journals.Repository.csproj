@@ -90,6 +90,14 @@
     <Compile Include="Migrations\201703141802027_Issues.Designer.cs">
       <DependentUpon>201703141802027_Issues.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703142053087_RemoveFileFromJournal.cs" />
+    <Compile Include="Migrations\201703142053087_RemoveFileFromJournal.Designer.cs">
+      <DependentUpon>201703142053087_RemoveFileFromJournal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703142121073_EmailForUser.cs" />
+    <Compile Include="Migrations\201703142121073_EmailForUser.Designer.cs">
+      <DependentUpon>201703142121073_EmailForUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="StaticMembershipService.cs" />
     <Compile Include="SubscriptionRepository.cs" />
@@ -110,6 +118,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703141802027_Issues.resx">
       <DependentUpon>201703141802027_Issues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703142053087_RemoveFileFromJournal.resx">
+      <DependentUpon>201703142053087_RemoveFileFromJournal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703142121073_EmailForUser.resx">
+      <DependentUpon>201703142121073_EmailForUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

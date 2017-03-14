@@ -52,9 +52,8 @@ else
                     @if (item.IsSubscribed)
                     {
                         @Html.ActionLink("Un Subscribe", "UnSubscribe", new { id = item.Id })
-                    }
-                    else
-                    {
+                        @Html.ActionLink("Issues", "Index", "Issues", new { journalId = item.Id }, null)
+                    } else {
                         @Html.ActionLink("Subscribe", "Subscribe", new { id = item.Id })
                     }
                 </td>

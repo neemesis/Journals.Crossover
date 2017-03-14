@@ -31,14 +31,14 @@ namespace Journals.Web.Controllers {
         public ActionResult Create() {
             return View();
         }
-
+        /*
         public ActionResult GetFile(int Id) {
             Journal j = _journalRepository.GetJournalById(Id);
             if (j == null)
                 throw new System.Web.Http.HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
 
             return File(j.Content, j.ContentType);
-        }
+        }*/
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -46,7 +46,7 @@ namespace Journals.Web.Controllers {
             if (ModelState.IsValid) {
                 Mapper.Initialize(cfg => cfg.CreateMap<JournalViewModel, Journal>());
                 var newJournal = Mapper.Map<JournalViewModel, Journal>(journal);
-                JiHelper.PopulateFileJournal(journal.File, newJournal);
+                //JiHelper.PopulateFileJournal(journal.File, newJournal);
 
                 newJournal.UserId = (int)_membershipService.GetUser().ProviderUserKey;
 
@@ -81,7 +81,7 @@ namespace Journals.Web.Controllers {
 
         public ActionResult Edit(int Id) {
             var journal = _journalRepository.GetJournalById(Id);
-
+            Mapper.Initialize(cfg => cfg.CreateMap<Journal, JournalUpdateViewModel>());
             var selectedJournal = Mapper.Map<Journal, JournalUpdateViewModel>(journal);
 
             return View(selectedJournal);
@@ -93,8 +93,6 @@ namespace Journals.Web.Controllers {
             if (ModelState.IsValid) {
                 Mapper.Initialize(cfg => cfg.CreateMap<JournalUpdateViewModel, Journal>());
                 var selectedJournal = Mapper.Map<JournalUpdateViewModel, Journal>(journal);
-                JiHelper.PopulateFileJournal(journal.File, selectedJournal);
-
                 var opStatus = _journalRepository.UpdateJournal(selectedJournal);
                 if (!opStatus.Status)
                     throw new System.Web.Http.HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));

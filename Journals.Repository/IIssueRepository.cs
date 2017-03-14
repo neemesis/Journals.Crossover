@@ -5,7 +5,7 @@ namespace Journals.Repository
 {
     public interface IIssueRepository
     {
-        List<Issue> GetAllIssues(int userId);
+        List<Issue> GetAllIssues(int? userId);
 
         OperationStatus AddIssue(Issue issue);
 

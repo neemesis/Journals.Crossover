@@ -28,8 +28,8 @@ namespace Journals.Web.Tests.Controllers
 
             var journalRepository = Mock.Create<IJournalRepository>();
             Mock.Arrange(() => journalRepository.GetAllJournals((int)userMock.ProviderUserKey)).Returns(new List<Journal>(){
-                    new Journal{ Id=1, Description="TestDesc", FileName="TestFilename.pdf", Title="Tester", UserId=1, ModifiedDate= DateTime.Now},
-                    new Journal{ Id=1, Description="TestDesc2", FileName="TestFilename2.pdf", Title="Tester2", UserId=1, ModifiedDate = DateTime.Now}
+                    new Journal{ Id=1, Description="TestDesc", Title="Tester", UserId=1, ModifiedDate= DateTime.Now},
+                    new Journal{ Id=1, Description="TestDesc2", Title="Tester2", UserId=1, ModifiedDate = DateTime.Now}
             }).MustBeCalled();
 
             //Act

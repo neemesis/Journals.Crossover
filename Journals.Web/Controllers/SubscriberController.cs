@@ -32,6 +32,7 @@ namespace Journals.Web.Controllers
             var userId = (int)Membership.GetUser().ProviderUserKey;
             var subscriptions = _subscriptionRepository.GetJournalsForSubscriber(userId);
 
+            Mapper.Initialize(cfg => cfg.CreateMap<Journal, SubscriptionViewModel>());
             var subscriberModel = Mapper.Map<List<Journal>, List<SubscriptionViewModel>>(journals);
             foreach (var journal in subscriberModel)
             {

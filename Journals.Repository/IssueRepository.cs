@@ -10,12 +10,30 @@ using Journals.Repository.DataContext;
 
 namespace Journals.Repository {
     public class IssueRepository : RepositoryBase<JournalsContext>, IIssueRepository {
-        public List<Issue> GetAllIssues(int journalId) {
+        public List<Issue> GetAllIssuesWithId(int journalId) {
             using (DataContext) {
                 foreach (var ta in DataContext.Issues) {
                     Debug.WriteLine(ta.Title);
                 }
                 var t = DataContext.Issues.Where(j => j.Id > 0 && j.JournalId == journalId).ToList();
+                return t;
+            }
+        }
+
+        public List<Issue> GetAllIssues(int? id) {
+            if (id.HasValue) {
+                return GetAllIssuesWithId(id.Value);
+            } else {
+                return GetAllIssuesList();
+            }
+        }
+
+        public List<Issue> GetAllIssuesList() {
+            using (DataContext) {
+                foreach (var ta in DataContext.Issues) {
+                    Debug.WriteLine(ta.Title);
+                }
+                var t = DataContext.Issues.Where(j => j.Id > 0).ToList();
                 return t;
             }
         }

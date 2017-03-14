@@ -38,7 +38,6 @@ else
             <tr>
                 <th>Title</th>
                 <th>Description</th>
-                <th>File</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -52,13 +51,12 @@ else
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
-                    <td>
-                        @Html.ActionLink(item.FileName, "GetFile", new { Id = item.Id }, new { target = "_blank" })
-                    </td>
+
                     <td>
                         @Html.ActionLink("Add Issue", "Create", "Issues", new { journalId = item.Id }, null)
                         @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
                         @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                        @Html.ActionLink("Issues", "Index", "Issues", new { journalId = item.Id }, null)
                     </td>
                 </tr>
             }

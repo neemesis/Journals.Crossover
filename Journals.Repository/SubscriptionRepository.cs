@@ -16,7 +16,7 @@ namespace Journals.Repository
                 {
                     var result = from a in DataContext.Journals
                                  where a.Title != null
-                                 select new { a.Id, a.Title, a.Description, a.User, a.UserId, a.ModifiedDate, a.FileName };
+                                 select new { a.Id, a.Title, a.Description, a.User, a.UserId, a.ModifiedDate };
 
                     if (result == null)
                         return new List<Journal>();
@@ -30,7 +30,6 @@ namespace Journals.Repository
                                                   UserId = f.UserId,
                                                   User = f.User,
                                                   ModifiedDate = f.ModifiedDate,
-                                                  FileName = f.FileName
                                               }).ToList();
 
                     return list;
