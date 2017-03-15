@@ -10,6 +10,12 @@ using Journals.Repository.DataContext;
 
 namespace Journals.Repository {
     public class IssueRepository : RepositoryBase<JournalsContext>, IIssueRepository {
+
+        /// <summary>
+        /// Returning all Issues under specific JournalId
+        /// </summary>
+        /// <param name="journalId">ID of the Journal</param>
+        /// <returns>List<Issue></returns>
         public List<Issue> GetAllIssuesWithId(int journalId) {
             using (DataContext) {
                 foreach (var ta in DataContext.Issues) {
@@ -28,6 +34,10 @@ namespace Journals.Repository {
             }
         }
 
+        /// <summary>
+        /// Get all issues regardless of Journal
+        /// </summary>
+        /// <returns>List<Issue></returns>
         public List<Issue> GetAllIssuesList() {
             using (DataContext) {
                 foreach (var ta in DataContext.Issues) {
@@ -38,12 +48,22 @@ namespace Journals.Repository {
             }
         }
 
+        /// <summary>
+        /// Return specific Issue by ID
+        /// </summary>
+        /// <param name="Id">ID of Issue</param>
+        /// <returns></returns>
         public Issue GetIssueById(int Id) {
             var t = DataContext;
             using (t)
                 return t.Issues.SingleOrDefault(j => j.Id == Id);
         }
 
+        /// <summary>
+        /// Adding new issue.
+        /// </summary>
+        /// <param name="newissue">Object of Issue class</param>
+        /// <returns>OperationStatus</returns>
         public OperationStatus AddIssue(Issue newissue) {
             var opStatus = new OperationStatus { Status = true };
             try {
@@ -59,6 +79,11 @@ namespace Journals.Repository {
             return opStatus;
         }
 
+        /// <summary>
+        /// Deleting specific issue.
+        /// </summary>
+        /// <param name="issue">Object of Issue class</param>
+        /// <returns>OperationStatus</returns>
         public OperationStatus DeleteIssue(Issue issue) {
             var opStatus = new OperationStatus { Status = true };
             try {
@@ -74,6 +99,11 @@ namespace Journals.Repository {
             return opStatus;
         }
 
+        /// <summary>
+        /// Updating issues.
+        /// </summary>
+        /// <param name="issue">Issue that needs to be updated.</param>
+        /// <returns>OperationStatus</returns>
         public OperationStatus UpdateIssue(Issue issue) {
             var opStatus = new OperationStatus { Status = true };
             try {

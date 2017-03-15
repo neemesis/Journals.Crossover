@@ -40,5 +40,6 @@ namespace Journals.Web.Tests.Controllers
             //Assert
             Assert.AreEqual(2, model.Count());
         }
+        
     }
 }

@@ -9,6 +9,10 @@ namespace Journals.Repository.Migrations {
             AutomaticMigrationsEnabled = false;
         }
 
+        /// <summary>
+        /// Seed Method for filling the database
+        /// </summary>
+        /// <param name="context">DbContext representing instance of Database</param>
         protected override void Seed(Journals.Repository.DataContext.JournalsContext context) {
             //  This method will be called after migrating to the latest version.
 

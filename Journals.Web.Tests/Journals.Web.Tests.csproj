@@ -9,8 +9,8 @@
     <ProjectGuid>{C93DC8A0-5F8D-4C18-8CED-00C1F99E29FE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Medico.Web.Tests</RootNamespace>
-    <AssemblyName>Medico.Web.Tests</AssemblyName>
+    <RootNamespace>Journals.Web.Tests</RootNamespace>
+    <AssemblyName>Journals.Web.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\IssuesControllerTest.cs" />
     <Compile Include="Controllers\PublisherControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
